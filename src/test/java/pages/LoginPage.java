@@ -10,6 +10,8 @@ public class LoginPage {
     private SelenideElement passwordInput = $("#password");
     private SelenideElement loginButton = $("#login-btn");
     private SelenideElement clearButton = $("#clear-btn");
+    private SelenideElement togglePasswodVisibility = $("#toggle-password");
+
 
 
     public void login(String username, String password) {
@@ -17,6 +19,9 @@ public class LoginPage {
         usernameInput.setValue(username);
         passwordInput.setValue(password);
         loginButton.click();
+    }
+    public void togglePasswodVisibility() {
+        togglePasswodVisibility.click();
     }
 
 }
