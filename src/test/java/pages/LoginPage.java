@@ -14,13 +14,23 @@ public class LoginPage {
 
 
 
-    public void login(String username, String password) {
+    public void loginAdmin(String username, String password) {
 
         usernameInput.setValue(username);
         passwordInput.setValue(password);
         loginButton.click();
     }
+
+    public void loginViewer(String username, String password) {
+        usernameInput.setValue(username);
+        passwordInput.setValue(password);
+        loginButton.click();
+    }
+
+
+
     public void togglePasswodVisibility() {
+
         togglePasswodVisibility.click();
     }
 
