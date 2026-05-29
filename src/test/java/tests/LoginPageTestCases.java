@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.url;
+import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 public class LoginPageTestCases extends BaseTest {
 
@@ -58,9 +59,9 @@ public class LoginPageTestCases extends BaseTest {
     public void ReadOnlyViewerLoginGrantsRestrictedAccess() {
         open("/");
         loginPage.loginViewer("viewer", "viewer123");
-        $("#main-content").shouldHave(text("Dashboard"));
+        webdriver().shouldHave(urlContaining("/dashboard"));
         $("#viewer-badge").shouldBe(visible).shouldHave(text("Read-only"));
-        $("#role-indicator").shouldHave(text("Read-only Viewer"));
+        $("[data-testid='role-indicator']").shouldHave(text("Read-only Viewer"));
         $("#nav-accounts").click();
         $(byText("Add New Account")).shouldNot(exist);
 
