@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class BaseTest {
 
+    protected
+
     @BeforeAll
     static void setUp() {
 
@@ -16,6 +18,8 @@ public class BaseTest {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10000;
+
+
 
         ChromeOptions options = new ChromeOptions();
 

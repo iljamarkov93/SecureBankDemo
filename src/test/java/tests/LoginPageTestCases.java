@@ -1,7 +1,6 @@
 package tests;
 
 import base.BaseTest;
-import com.codeborne.selenide.conditions.Visible;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 
