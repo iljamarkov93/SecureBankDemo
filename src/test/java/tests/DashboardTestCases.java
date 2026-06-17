@@ -1,9 +1,9 @@
 package tests;
 
 import base.BaseTest;
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.conditions.Attribute;
 import org.junit.jupiter.api.Test;
+import pages.AccountPage;
+import pages.DashboardPage;
 import pages.LoginPage;
 
 
@@ -15,6 +15,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class DashboardTestCases extends BaseTest {
 
     LoginPage loginPage = new LoginPage();
+    DashboardPage dashboard = new DashboardPage();
+    AccountPage account = new AccountPage();
 
 
     @Test
@@ -32,7 +34,22 @@ public class DashboardTestCases extends BaseTest {
         $("[data-testid='transactions-count-card']").shouldBe(visible);
         $("#transactions-count").shouldHave(matchText("\\d+"));
 
+    }
 
+
+    @Test
+    public void StatCardValuesMatchActualAccountAndTransactionData() {
+        open("/");
+        loginPage.loginAdmin("admin", "admin123");
+        open("/dashboard");
+        $("#dashboard-page-container").shouldHave(attribute("data-loading", "false"));
+        //System.out.println(dashboard.getTotalBalance());
+        open("/accounts");
+        $$("[data-testid='account-balance']")
+                .forEach(el -> System.out.println(el.getText()));
+
+        /*Остановился на том что надо суммировать со страницы /account значения и сравнить их с суммой на /dashboard
+        Проблема сейчас в том что я не могу получить суммы со страницы /account*/
 
 
 
