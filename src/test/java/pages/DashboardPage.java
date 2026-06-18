@@ -8,21 +8,21 @@ import static com.codeborne.selenide.Selenide.$;
 public class DashboardPage {
 
     private final SelenideElement totalBalance = $("#total-balance");
-    private final SelenideElement totalAccount = $("#summary-total-accounts");
+    private final SelenideElement totalAccount = $("#accounts-count");
 
-    public String getTotalBalance() {
+    public double getTotalBalance() {
         Selenide.sleep(3000);
-        return totalBalance.getText();
+        String text = totalBalance.getText();
+
+        return Double.parseDouble(
+                text.replace("$", "")
+                        .replace(",", ""));
     }
 
-    public String getTotalAccount() {
-        return totalAccount.getText();
-    }
 
-
-
-
-
+    public int getAccountsCount() {
+        return Integer.parseInt(totalAccount.getText().trim());
+}
 
 
 }

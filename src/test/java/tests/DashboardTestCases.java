@@ -1,6 +1,8 @@
 package tests;
 
 import base.BaseTest;
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.AccountPage;
 import pages.DashboardPage;
@@ -40,16 +42,23 @@ public class DashboardTestCases extends BaseTest {
     @Test
     public void StatCardValuesMatchActualAccountAndTransactionData() {
         open("/");
+        //Step1
         loginPage.loginAdmin("admin", "admin123");
         open("/dashboard");
+        //Step2
         $("#dashboard-page-container").shouldHave(attribute("data-loading", "false"));
-        //System.out.println(dashboard.getTotalBalance());
+        //Step3
+        double dashboardBalance = dashboard.getTotalBalance();
+        int dashBoardAccount = dashboard.getAccountsCount();
+        //Step4
         open("/accounts");
-        $$("[data-testid='account-balance']")
-                .forEach(el -> System.out.println(el.getText()));
+        $("#accounts-page-container").shouldHave(attribute("data-loading", "false")); //ожидание пока прогрузится страница
+        double balanceSum = account.sumAllAccountBalances();
+        int accountRows = account.getAccountRows();
+        Assertions.assertEquals(dashboardBalance, balanceSum);
+        //Step5
+        Assertions.assertEquals(dashBoardAccount, accountRows);
 
-        /*Остановился на том что надо суммировать со страницы /account значения и сравнить их с суммой на /dashboard
-        Проблема сейчас в том что я не могу получить суммы со страницы /account*/
 
 
 
