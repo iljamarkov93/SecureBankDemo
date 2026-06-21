@@ -21,6 +21,7 @@ public class DashboardPage {
 
 
     public int getAccountsCount() {
+
         return Integer.parseInt(totalAccount.getText().trim());
 }
 

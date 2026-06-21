@@ -54,7 +54,7 @@ public class DashboardTestCases extends BaseTest {
         open("/accounts");
         $("#accounts-page-container").shouldHave(attribute("data-loading", "false")); //ожидание пока прогрузится страница
         double balanceSum = account.sumAllAccountBalances();
-        int accountRows = account.getAccountRows();
+        int accountRows = account.getAccountRowsCount();
         Assertions.assertEquals(dashboardBalance, balanceSum);
         //Step5
         Assertions.assertEquals(dashBoardAccount, accountRows);

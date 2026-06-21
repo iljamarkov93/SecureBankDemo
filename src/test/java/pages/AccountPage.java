@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -9,19 +10,21 @@ public class AccountPage {
 
     private final SelenideElement totalBalance = $("#summary-total-balance");
     private final SelenideElement totalAccount = $("#summary-total-accounts");
-    private final SelenideElement accountRows = $("[data-testid='account-balance']");
+    private final ElementsCollection accountRows = $$("[data-testid='account-balance']");
 
 
     public String sumTotalBalance() {
+
         return totalBalance.getText();
     }
 
     public String getTotalAccount() {
+
         return totalAccount.getText();
     }
 
-    public int getAccountRows() {
-        return Integer.parseInt(accountRows.getText().trim());
+    public int getAccountRowsCount() {
+        return accountRows.size();
     }
 
     public double sumAllAccountBalances() {
